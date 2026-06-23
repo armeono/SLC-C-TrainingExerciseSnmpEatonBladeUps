@@ -73,11 +73,6 @@ Any inquiries can be addressed to:
 				<RTDisplay>false</RTDisplay>
 			</Display>
 		</Param>
-		<Param id="3">
-			<Name>CalculateSpeed</Name>
-			<Description>Calculate Speed</Description>
-			<Type>dummy</Type>
-		</Param>
 		
 		
 		<!--Normal params-->
@@ -121,7 +116,7 @@ and networking software.]]>
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type>string</Type>
+				<Type lines="3">string</Type>
 			</Measurement>
 		</Param>
 		<Param id="1001" trending="true">
@@ -139,6 +134,8 @@ re-initialized.]]>
 				<RawType>numeric text</RawType>
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
+				<Sequence noset="true">div:100</Sequence>
+				
 			</Interprete>
 			<SNMP>
 				<Enabled>true</Enabled>
@@ -150,6 +147,7 @@ re-initialized.]]>
 			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
+				<Units>seconds</Units>
 				<Positions>
 					<Position>
 						<Page>General</Page>
@@ -159,7 +157,7 @@ re-initialized.]]>
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type>number</Type>
+				<Type type="time">number</Type>
 			</Measurement>
 		</Param>
 		<Param id="1002" trending="false">
@@ -1928,17 +1926,12 @@ bandwidth, this object should be zero.]]>
 				<Type>number</Type>
 			</Measurement>
 		</Param>
-		
-		
-		
-		
-		
 	</Params>
 
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
-		<QAction id="3" name="CalculateSpeed" encoding="csharp" triggers="3">
+		<QAction id="3" name="CalculateSpeed" encoding="csharp" triggers="1202" row="true">
 		</QAction>
 	</QActions>
 
@@ -1968,14 +1961,6 @@ bandwidth, this object should be zero.]]>
 			</Content>
 		</Group>
 
-		<Group id="3">
-			<Name>calculateSpeed</Name>
-			<Description>CalculateSpeed</Description>
-			<Type>poll action</Type>
-			<Content>
-				<Action>3</Action>
-			</Content>
-		</Group>
 		<Group id="1100">
 			<Name>interfaceTable</Name>
 			<Description>Interface Table</Description>
@@ -2006,15 +1991,6 @@ bandwidth, this object should be zero.]]>
 			</Content>
 		</Trigger>
 
-		<Trigger id="2">
-			<Name>onSpeedChange</Name>
-			<On id="1103">parameter</On>
-			<Time>change</Time>
-			<Type>action</Type>
-			<Content>
-				<Id>4</Id>
-			</Content>
-		</Trigger>
 	</Triggers>
 	<Actions>
 		<Action id="1"> 
@@ -2027,27 +2003,9 @@ bandwidth, this object should be zero.]]>
 			<On id="2">parameter</On>
 			<Type>run actions</Type>
 		</Action>
-
-		<Action id="3">
-			<Name>Calculate Speed</Name>
-			<On id="3">parameter</On>
-			<Type>run actions</Type>
-		</Action>
-
-		<Action id="4">
-			<Name>On Speed Change</Name>
-			<On id="3">group</On>
-			<Type>execute next</Type>
-		</Action>
 	</Actions>
 
 	<Timers>
-		<Timer id="1">
-			<Name>Fast Timer (10s)</Name>
-			<Time initial="true">10000</Time>
-			<Interval>75</Interval>
-			<Content></Content>
-		</Timer>
 		<Timer id="2">
 			<Name>Medium Timer (1m)</Name>
 			<Time initial="true" dataDisplay="30000">60000</Time>
@@ -2056,13 +2014,8 @@ bandwidth, this object should be zero.]]>
 				<Group>1</Group>
 				<Group>1100</Group>
 				<Group>1200</Group>
+
 			</Content>
-		</Timer>
-		<Timer id="3">
-			<Name>Slow Timer (1h)</Name>
-			<Time initial="true">3600000</Time>
-			<Interval>75</Interval>
-			<Content></Content>
 		</Timer>
 	</Timers>
 

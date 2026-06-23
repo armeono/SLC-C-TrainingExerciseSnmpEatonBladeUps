@@ -195,7 +195,6 @@ public interface SLProtocolExt : SLProtocol
 	/// <summary>PID: 1200</summary>
 	IfxtableQActionTable ifxtable { get; set; }
 	object Afterstartup_dummy { get; set; }
-	object Calculatespeed_dummy { get; set; }
 	object Systemdescription_1000 { get; set; }
 	object Systemdescription { get; set; }
 	object Systemuptime_1001 { get; set; }
@@ -241,8 +240,6 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public IfxtableQActionTable ifxtable { get; set; }
 	/// <summary>PID: 2  | Type: dummy</summary>
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
-	/// <summary>PID: 3  | Type: dummy</summary>
-	public System.Object Calculatespeed_dummy {get { return GetParameter(3); }set { SetParameter(3, value); }}
 	/// <summary>PID: 1000  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Systemdescription_1000 {get { return GetParameter(1000); }set { SetParameter(1000, value); }}
