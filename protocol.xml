@@ -60,7 +60,7 @@ Any inquiries can be addressed to:
 
 	<Compliancies>
 		<CassandraReady>true</CassandraReady>
-		<MinimumRequiredVersion>10.1.0.0 - 9966</MinimumRequiredVersion>
+		<MinimumRequiredVersion>10.1.11.0 - 11027</MinimumRequiredVersion>
 	</Compliancies>
 
 	<!--Dummy Params-->
@@ -147,7 +147,7 @@ re-initialized.]]>
 			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
-				<Units>seconds</Units>
+				<Units>s</Units>
 				<Positions>
 					<Position>
 						<Page>General</Page>
@@ -258,7 +258,7 @@ re-initialized.]]>
 			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
-				<Units>Hertz</Units>
+				<Units>Hz</Units>
 				<Range>
 					<Low>0</Low>
 					<High>2147483647</High>
@@ -380,7 +380,7 @@ re-initialized.]]>
 			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
-				<Units>Hertz</Units>
+				<Units>Hz</Units>
 				<Range>
 					<Low>0</Low>
 					<High>2147483647</High>
@@ -454,6 +454,7 @@ re-initialized.]]>
 				
 				<ColumnOption idx="4" pid="1105" type="snmp" options="" />
 				<ColumnOption idx="5" pid="1106" type="custom" options="" />
+				<ColumnOption idx="6" pid="1107" type="state" options="" />
 			</ArrayOptions>
 			<Information>
 				<Subtext>
@@ -476,7 +477,7 @@ is given by the value of ifNumber.]]>
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:1101|0-1104|1-1105|4-1102|2-1103|3-1106|5,width:100-100-100-195-100-115,sort:INT-INT-STRING-INT-INT-INT,lines:20,filter:true">table</Type>
+				<Type options="tab=columns:1101|0-1104|1-1105|4-1102|2-1103|3-1106|5-1107|6,width:100-100-100-195-100-115-0,sort:INT-INT-STRING-INT-INT-INT-STRING,lines:20,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="1101" trending="false">
@@ -1672,6 +1673,7 @@ zero.]]>
 			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
+				<Units>Bps</Units>
 			</Display>
 			<Measurement>
 				<Type>number</Type>
@@ -1728,7 +1730,7 @@ the down(2) state).]]>
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="1154" trending="true" snmpSetAndGet="true">
+		<Param id="1154" snmpSetAndGet="true">
 			<Name>ifTableAdminStatus</Name>
 			<Description>Admin Status (If)</Description>
 			<Type>write</Type>
@@ -1742,9 +1744,6 @@ the down(2) state).]]>
 				<OID type="complete">1.3.6.1.2.1.2.2.1.7</OID>
 				<Type>integer</Type>
 			</SNMP>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1810,10 +1809,11 @@ length string.]]>
 			</Measurement>
 		</Param>
 		<Param id="1106" trending="false">
-			<Name>calculatedSpeed</Name>
+			<Name>ifTableCalculatedSpeed</Name>
 			<Description>Calculated Speed</Description>
 			<Type>read</Type>
 			<Information>
+				<Subtext>Final speed for the interface, if the current is overflowing, it is taken from the extension table.</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>numeric text</RawType>
@@ -1822,9 +1822,54 @@ length string.]]>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
+				<Units>Bps</Units>
 			</Display>
 			<Measurement>
 				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="1107" trending="false">
+			<Name>ifTableRowState</Name>
+			<Description>Row State (Interface Table)</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Information>
+				<Subtext>The state of the row after updating.</Subtext>
+			</Information>
+			<Alarm>
+				<Monitored>false</Monitored>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Updated</Display>
+						<Value>1</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Equal</Display>
+						<Value>2</Value>
+					</Discreet>
+					<Discreet>
+						<Display>New</Display>
+						<Value>3</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Deleted</Display>
+						<Value>4</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Recreated</Display>
+						<Value>5</Value>
+					</Discreet>
+				</Discreets>
 			</Measurement>
 		</Param>
 		
@@ -1921,6 +1966,7 @@ bandwidth, this object should be zero.]]>
 			</SNMP>
 			<Display>
 				<RTDisplay>true</RTDisplay>
+				<Units>Bps</Units>
 			</Display>
 			<Measurement>
 				<Type>number</Type>
@@ -1931,7 +1977,7 @@ bandwidth, this object should be zero.]]>
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
-		<QAction id="3" name="CalculateSpeed" encoding="csharp" triggers="1202" row="true">
+		<QAction id="3" name="CalculateSpeed" encoding="csharp" triggers="1103" row="true">
 		</QAction>
 	</QActions>
 

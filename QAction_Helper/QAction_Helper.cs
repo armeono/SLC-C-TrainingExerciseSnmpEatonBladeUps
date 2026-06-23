@@ -98,9 +98,14 @@ public static class Parameter
 			public const int ifxifname = 1105;
 			/// <summary>PID: 1106 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int calculatedspeed_1106 = 1106;
+			public const int iftablecalculatedspeed_1106 = 1106;
 			/// <summary>PID: 1106 | Type: read</summary>
-			public const int calculatedspeed = 1106;
+			public const int iftablecalculatedspeed = 1106;
+			/// <summary>PID: 1107 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int iftablerowstate_1107 = 1107;
+			/// <summary>PID: 1107 | Type: read</summary>
+			public const int iftablerowstate = 1107;
 			public class Write
 			{
 			}
@@ -134,9 +139,14 @@ public static class Parameter
 			public const int ifxifname = 4;
 			/// <summary>IDX: 5 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int calculatedspeed_1106 = 5;
+			public const int iftablecalculatedspeed_1106 = 5;
 			/// <summary>IDX: 5 | Type: read</summary>
-			public const int calculatedspeed = 5;
+			public const int iftablecalculatedspeed = 5;
+			/// <summary>IDX: 6 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int iftablerowstate_1107 = 6;
+			/// <summary>IDX: 6 | Type: read</summary>
+			public const int iftablerowstate = 6;
 		}
 	}
 	public class Ifxtable
@@ -223,8 +233,10 @@ public interface SLProtocolExt : SLProtocol
 	object Iftableadminstatus { get; set; }
 	object Ifxifname_1105 { get; set; }
 	object Ifxifname { get; set; }
-	object Calculatedspeed_1106 { get; set; }
-	object Calculatedspeed { get; set; }
+	object Iftablecalculatedspeed_1106 { get; set; }
+	object Iftablecalculatedspeed { get; set; }
+	object Iftablerowstate_1107 { get; set; }
+	object Iftablerowstate { get; set; }
 	object Iftableadminstatus_1154 { get; set; }
 	object Ifxtableinstance_1201 { get; set; }
 	object Ifxtableinstance { get; set; }
@@ -312,9 +324,14 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Ifxifname {get { return GetParameter(1105); }set { SetParameter(1105, value); }}
 	/// <summary>PID: 1106  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Calculatedspeed_1106 {get { return GetParameter(1106); }set { SetParameter(1106, value); }}
+	public System.Object Iftablecalculatedspeed_1106 {get { return GetParameter(1106); }set { SetParameter(1106, value); }}
 	/// <summary>PID: 1106  | Type: read</summary>
-	public System.Object Calculatedspeed {get { return GetParameter(1106); }set { SetParameter(1106, value); }}
+	public System.Object Iftablecalculatedspeed {get { return GetParameter(1106); }set { SetParameter(1106, value); }}
+	/// <summary>PID: 1107  | Type: read | DISCREETS: Updated = 1, Equal = 2, New = 3, Deleted = 4, Recreated = 5</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Iftablerowstate_1107 {get { return GetParameter(1107); }set { SetParameter(1107, value); }}
+	/// <summary>PID: 1107  | Type: read | DISCREETS: Updated = 1, Equal = 2, New = 3, Deleted = 4, Recreated = 5</summary>
+	public System.Object Iftablerowstate {get { return GetParameter(1107); }set { SetParameter(1107, value); }}
 	/// <summary>PID: 1154  | Type: write | DISCREETS: Up = 1, Down = 2, Testing = 3</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Iftableadminstatus_1154 {get { return GetParameter(1154); }set { SetParameter(1154, value); }}
@@ -380,11 +397,16 @@ public class IftableQActionRow : QActionTableRow
 	public System.Object Ifxifname { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
 	/// <summary>PID: 1106 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Calculatedspeed_1106 { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	public System.Object Iftablecalculatedspeed_1106 { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
 	/// <summary>PID: 1106 | Type: read</summary>
-	public System.Object Calculatedspeed { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
-	public IftableQActionRow() : base(0, 6) { }
-	public IftableQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
+	public System.Object Iftablecalculatedspeed { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	/// <summary>PID: 1107 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Iftablerowstate_1107 { get { if (base.Columns.ContainsKey(6)) { return base.Columns[6]; } else { return null; } } set { if (base.Columns.ContainsKey(6)) { base.Columns[6] = value; } else { base.Columns.Add(6, value); } } }
+	/// <summary>PID: 1107 | Type: read</summary>
+	public System.Object Iftablerowstate { get { if (base.Columns.ContainsKey(6)) { return base.Columns[6]; } else { return null; } } set { if (base.Columns.ContainsKey(6)) { base.Columns[6] = value; } else { base.Columns.Add(6, value); } } }
+	public IftableQActionRow() : base(0, 7) { }
+	public IftableQActionRow(System.Object[] oRow) : base(0, 7, oRow) { }
 	public static implicit operator IftableQActionRow(System.Object[] source) { return new IftableQActionRow(source); }
 	public static implicit operator System.Object[](IftableQActionRow source) { return source.ToObjectArray(); }
 }
