@@ -23,9 +23,7 @@ public static class QAction
 
             uint currentSpeed = Convert.ToUInt32(interfaceRow[Parameter.Iftable.Idx.iftablespeed]);
 
-            Boolean speedOverflow = IsSpeedOverflowing(currentSpeed);
-
-            protocol.Log($"QA{protocol.QActionID}|22222|{rowState}", LogType.Error, LogLevel.NoLogging);
+            bool speedOverflow = IsSpeedOverflowing(currentSpeed);
 
             switch (rowState)
             {
@@ -33,9 +31,6 @@ public static class QAction
                 case RowState.Recreated:
                 case RowState.Updated:
                     {
-
-                        protocol.Log($"QA{protocol.QActionID}|yooooo|{rowState}, {speedOverflow}, {currentSpeed}", LogType.Error, LogLevel.NoLogging);
-
                         if (speedOverflow)
                         {
                             SetSpeedFromExtensionTable(protocol, rowKey);
@@ -61,7 +56,7 @@ public static class QAction
         }
     }
 
-    private static Boolean IsSpeedOverflowing(uint speed)
+    private static bool IsSpeedOverflowing(uint speed)
     {
         return speed == uint.MaxValue;
     }

@@ -1674,6 +1674,12 @@ zero.]]>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 				<Units>Bps</Units>
+				<DynamicUnits>
+					<Unit decimals="1">bps</Unit>
+					<Unit decimals="3">kBps</Unit>
+					<Unit decimals="3">MBps</Unit>
+					<Unit>GBps</Unit>
+				</DynamicUnits>
 			</Display>
 			<Measurement>
 				<Type>number</Type>
@@ -1823,6 +1829,12 @@ length string.]]>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 				<Units>Bps</Units>
+				<DynamicUnits>
+					<Unit>bps</Unit>
+					<Unit decimals="3">kBps</Unit>
+					<Unit decimals="3">MBps</Unit>
+					<Unit>GBps</Unit>
+				</DynamicUnits>
 			</Display>
 			<Measurement>
 				<Type>number</Type>
@@ -1967,7 +1979,13 @@ bandwidth, this object should be zero.]]>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 				<Units>Bps</Units>
-			</Display>
+				<DynamicUnits>
+					<Unit>bps</Unit>
+					<Unit decimals="3">kBps</Unit>
+					<Unit decimals="3">MBps</Unit>
+					<Unit>GBps</Unit>
+				</DynamicUnits>
+				</Display>
 			<Measurement>
 				<Type>number</Type>
 			</Measurement>
