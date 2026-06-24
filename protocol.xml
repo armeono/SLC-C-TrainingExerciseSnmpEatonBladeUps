@@ -396,6 +396,12 @@ re-initialized.]]>
 						<Row>3</Row>
 					</Position>
 				</Positions>
+				<Units>Hz</Units>
+				<DynamicUnits>
+					<Unit decimals="1">kHz</Unit>
+					<Unit>MHz</Unit>
+					<Unit>GHz</Unit>
+				</DynamicUnits>
 			</Display>
 			<Measurement>
 				<Type>number</Type>
