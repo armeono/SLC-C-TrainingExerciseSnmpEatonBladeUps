@@ -100,7 +100,8 @@ and networking software.]]>
 			</SNMP>
 			<Alarm>
 				<Monitored>true</Monitored>
-						</Alarm>
+				<Normal>1</Normal>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 				<Positions>
@@ -537,6 +538,7 @@ IANAifType textual convention.]]>
 			</SNMP>
 			<Alarm>
 				<Monitored>true</Monitored>
+				<Normal>1</Normal>
 			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
@@ -1675,6 +1677,7 @@ zero.]]>
 			</SNMP>
 			<Alarm>
 				<Monitored>true</Monitored>
+				<Normal>100</Normal>
 			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
@@ -1723,6 +1726,7 @@ the down(2) state).]]>
 			</SNMP>
 			<Alarm>
 				<Monitored>true</Monitored>
+				<Normal>1</Normal>
 			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
